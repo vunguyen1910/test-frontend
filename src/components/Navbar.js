@@ -1,6 +1,18 @@
 import React from "react";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 export default function Navbar() {
+  const userExits = localStorage.getItem("token");
+  const logOut = async() => {
+    localStorage.clear();
+    const resp = await fetch("https://127.0.0.1:5000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${userExits}`
+      },
+      body: JSON.stringify({userExits})
+    });
+  };
   return (
     <div className="container">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -20,11 +32,25 @@ export default function Navbar() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="nav navbar-nav ml-auto">
-            <li className="nav-item active">
-              <Link className="nav-link" to="/login">
-                LOGIN
-              </Link>
-            </li>
+            {userExits ? (
+              <li className="nav-item active">
+                <Link
+                  className="nav-link"
+                  to="/login"
+                  onClick={() => {
+                    logOut();
+                  }}
+                >
+                  Logout
+                </Link>
+              </li>
+            ) : (
+              <li className="nav-item active">
+                <Link className="nav-link" to="/login">
+                  Login
+                </Link>
+              </li>
+            )}
             <li className="nav-item">
               <Link className="nav-link" to="./register">
                 Become a tutor

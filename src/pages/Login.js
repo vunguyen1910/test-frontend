@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import Navbar from "../components/Navbar";
 import { Form, Button } from "react-bootstrap";
+import {Redirect, useHistory} from 'react-router-dom'
 export default function Login() {
   const [input, setInput] = useState({});
-  const [currentUser, setCurrentUser] = useState({email: "",
-                            name: "", 
-                            desc: "", 
-                            avata_url: "", 
-                            phone: "", 
-                            course_id: "",
-                            ecourse_id: ""                                                 
-});
+  const [userExits, setUserExits] = useState(localStorage.getItem('token'))
+  const [currenUser, setCurrenUser] = useState({})
+  const history = useHistory()
 
+  const checkUserExits = () => {
+    if (userExits){
+      return history.push("/")
+    }
+  }
   const handelOnChange = e => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
@@ -19,29 +20,23 @@ export default function Login() {
     const resp = await fetch("https://127.0.0.1:5000/login", {
       method: "POST",
       headers: {
-        'Accept': 'application/json',
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ ...input })
+      body: JSON.stringify(input)
     });
     const data = await resp.json()
-    setCurrentUser({email: data.email,
-                    name: data.name, 
-                    desc: data.desc, 
-                    avata_url: data.avata_url, 
-                    phone: data.phone 
-    })
+    setCurrenUser(data)
+    localStorage.setItem('token', data.token)
+    history.push("/")
   };
-  
   const handleSubmit = e => {
-    e.preventDefault();
+    e.preventDefault()
     postUser();
   };
-
-  console.log(currentUser)
+  checkUserExits()
   return (
     <div>
-      <Navbar />
+      <Navbar currenUser={currenUser}/>
       <div
         className="text-center container w-50"
         style={{ marginTop: "100px" }}

@@ -1,9 +1,23 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import { Form, Button, Col, InputGroup } from "react-bootstrap";
+import {useHistory} from 'react-router-dom'
+
+
+
 export default function Register() {
   const [input, setInput] = useState({});
   const [validated, setValidated] = useState(false);
+  const [state, setState] = useState('')
+
+  const history = useHistory()
+  const userExits = localStorage.getItem('token')
+  const checkUserExits = () => {
+    if (userExits){
+      return history.push("/")
+    }
+  }
+
   const handelOnChange = e => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
@@ -15,11 +29,26 @@ export default function Register() {
     }
     event.preventDefault();
     setValidated(true);
+    postUser()
   };
-  console.log(input)
+  const postUser = async() => {
+    const resp = await fetch("https://127.0.0.1:5000/register",{
+      method: "POST",
+      headers:{
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(input)
+    })
+    const data = await resp.json()
+    setState(data.state)
+  }
+
+  checkUserExits()
+
   return (
     <div>
       <Navbar />
+      <p style={{color :'red'}}>{state}</p>
       <div className="container" style={{ marginTop: "50px" }}>
         <Form noValidate validated={validated} onSubmit={(event)=>handleSubmit(event)} onChange={(e)=>handelOnChange(e)}>
           <Form.Row>
@@ -72,16 +101,16 @@ export default function Register() {
             </Form.Group>
             <Form.Group as={Col} md="3" controlId="validationCustom04">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="new-password" placeholder="Password" name="password" required />
+              <Form.Control type="password" placeholder="Password" name="password" required />
               <Form.Control.Feedback type="invalid">
                 Please provide a password.
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group as={Col} md="3" controlId="validationCustom05">
-              <Form.Label>Confirm Password</Form.Label>
-              <Form.Control type="new-password" placeholder="Confirm Password" name="confirm" required />
+              <Form.Label>Email</Form.Label>
+              <Form.Control type="email" placeholder="email" name="email" required />
               <Form.Control.Feedback type="invalid">
-                Please provide a right password.
+                Please provide a email.
               </Form.Control.Feedback>
             </Form.Group>
           </Form.Row>
