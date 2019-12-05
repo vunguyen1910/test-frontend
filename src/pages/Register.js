@@ -47,7 +47,6 @@ export default function Register() {
 
   return (
     <div>
-      <Navbar />
       <p style={{color :'red'}}>{state}</p>
       <div className="container" style={{ marginTop: "50px" }}>
         <Form noValidate validated={validated} onSubmit={(event)=>handleSubmit(event)} onChange={(e)=>handelOnChange(e)}>

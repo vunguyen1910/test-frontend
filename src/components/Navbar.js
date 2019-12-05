@@ -1,18 +1,28 @@
-import React from "react";
-import { Link } from "react-router-dom";
-export default function Navbar() {
-  const userExits = localStorage.getItem("token");
+import React, {useState} from "react";
+import { Link, useHistory } from "react-router-dom";
+
+
+export default function Navbar(props) {
+
+  const history = useHistory();
+
+
   const logOut = async() => {
-    localStorage.clear();
-    const resp = await fetch("https://127.0.0.1:5000/login", {
-      method: "POST",
+    const resp = await fetch("https://127.0.0.1:5000/logout", {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Token ${userExits}`
-      },
-      body: JSON.stringify({userExits})
+        Authorization: `Token ${localStorage.getItem('token')}`
+      }
     });
+     if (resp.ok) {
+       localStorage.clear('token')
+       props.setCurrentUser(null)
+       history.push('/')
+     } else {
+       alert('something wrong log out again')
+     }
   };
+
   return (
     <div className="container">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -32,7 +42,7 @@ export default function Navbar() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="nav navbar-nav ml-auto">
-            {userExits ? (
+            {props.currentUser ? (
               <li className="nav-item active">
                 <Link
                   className="nav-link"

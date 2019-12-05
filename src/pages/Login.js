@@ -1,22 +1,22 @@
 import React, { useState, useEffect} from "react";
-import Navbar from "../components/Navbar";
 import { Form, Button } from "react-bootstrap";
 import {Redirect, useHistory} from 'react-router-dom'
-export default function Login() {
+
+
+export default function Login(props) {
   const [input, setInput] = useState({});
-  const [userExits, setUserExits] = useState(localStorage.getItem('token'))
-  const [currenUser, setCurrenUser] = useState({})
   const history = useHistory()
 
-  const checkUserExits = () => {
-    if (userExits){
-      return history.push("/")
-    }
-  }
+  useEffect(() => {  
+  }, [])
+
+ 
+
   const handelOnChange = e => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
-  const postUser = async () => {
+
+  const login = async () => {
     const resp = await fetch("https://127.0.0.1:5000/login", {
       method: "POST",
       headers: {
@@ -24,19 +24,29 @@ export default function Login() {
       },
       body: JSON.stringify(input)
     });
-    const data = await resp.json()
-    setCurrenUser(data)
-    localStorage.setItem('token', data.token)
-    history.push("/")
+    if (resp.ok){
+      // co 2 truong hop cua resp 1)resp backend tra ve, 2) error, backend ko tra ve, do HTTP tu tra ve
+      const data = await resp.json() // data la` cua backend tra ve
+      if (data.success){
+        props.setCurrentUser(data.user)
+        localStorage.setItem('token', data.token)
+        history.push("/")
+      }else {
+        alert(data.message)
+      }
+    } else {
+      alert('fail to fetch')
+    }
   };
+
   const handleSubmit = e => {
     e.preventDefault()
-    postUser();
-  };
-  checkUserExits()
+    login()
+  }
+
+  console.log('login')
   return (
     <div>
-      <Navbar currenUser={currenUser}/>
       <div
         className="text-center container w-50"
         style={{ marginTop: "100px" }}
@@ -69,6 +79,7 @@ export default function Login() {
           <Button variant="primary" type="submit">
             Submit
           </Button>
+          <a href="https://127.0.0.1:5000/loginfacebook/facebook"  rel="noopener noreferrer">Login to facebook</a>
         </Form>
       </div>
     </div>
