@@ -10,14 +10,6 @@ export default function Register() {
   const [validated, setValidated] = useState(false);
   const [state, setState] = useState('')
 
-  const history = useHistory()
-  const userExits = localStorage.getItem('token')
-  const checkUserExits = () => {
-    if (userExits){
-      return history.push("/")
-    }
-  }
-
   const handelOnChange = e => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
@@ -38,12 +30,21 @@ export default function Register() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(input)
-    })
-    const data = await resp.json()
-    setState(data.state)
+    });
+    if (resp.ok){
+      // co 2 truong hop cua resp 1)resp backend tra ve, 2) error, backend ko tra ve, do HTTP tu tra ve
+      const data = await resp.json() // data la` cua backend tra ve
+      if (data.success){
+        props.setCurrentUser(data.user)
+        localStorage.setItem('token', data.token)
+        history.push("/")
+      }else {
+        alert(data.message)
+      }
+    } else {
+      alert('fail to fetch')
+    }
   }
-
-  checkUserExits()
 
   return (
     <div>

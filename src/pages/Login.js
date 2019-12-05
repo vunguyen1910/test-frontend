@@ -43,8 +43,6 @@ export default function Login(props) {
     e.preventDefault()
     login()
   }
-
-  console.log('login')
   return (
     <div>
       <div

@@ -51,7 +51,7 @@ function App() {
 
       <Switch>
         <Route path="/login" render={()=> <Login setCurrentUser={setCurrentUser}/>}/>
-        <Route path="/register" render={() => <Register />}/>
+        <Route path="/register" render={() => <Register setCurrentUser={setCurrentUser}/>}/>
         <Private path="/" user={currentUser} component={HomePage}/>
       </Switch>
     </div>
