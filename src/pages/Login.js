@@ -1,16 +1,11 @@
 import React, { useState, useEffect} from "react";
 import { Form, Button } from "react-bootstrap";
 import {Redirect, useHistory} from 'react-router-dom'
-
+import {Link} from 'react-router-dom'
 
 export default function Login(props) {
   const [input, setInput] = useState({});
   const history = useHistory()
-
-  useEffect(() => {  
-  }, [])
-
- 
 
   const handelOnChange = e => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -30,7 +25,7 @@ export default function Login(props) {
       if (data.success){
         props.setCurrentUser(data.user)
         localStorage.setItem('token', data.token)
-        history.push("/")
+        history.push('/')
       }else {
         alert(data.message)
       }
@@ -43,6 +38,7 @@ export default function Login(props) {
     e.preventDefault()
     login()
   }
+  if (props.currentUser) history.push('/')
   return (
     <div>
       <div
@@ -78,6 +74,7 @@ export default function Login(props) {
             Submit
           </Button>
           <a href="https://127.0.0.1:5000/loginfacebook/facebook"  rel="noopener noreferrer">Login to facebook</a>
+          <div><Link to="/forgot-password" rel="noopener noreferrer" >Forgot password</Link></div>
         </Form>
       </div>
     </div>

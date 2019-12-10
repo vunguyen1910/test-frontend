@@ -1,26 +1,23 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
-
 export default function Navbar(props) {
-
   const history = useHistory();
 
-
-  const logOut = async() => {
+  const logOut = async () => {
     const resp = await fetch("https://127.0.0.1:5000/logout", {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Token ${localStorage.getItem('token')}`
+        Authorization: `Token ${localStorage.getItem("token")}`
       }
     });
-     if (resp.ok) {
-       localStorage.clear('token')
-       props.setCurrentUser(null)
-       history.push('/')
-     } else {
-       alert('something wrong log out again')
-     }
+    if (resp.ok) {
+      localStorage.clear("token");
+      props.setCurrentUser(null);
+      history.push("/");
+    } else {
+      alert("something wrong log out again");
+    }
   };
 
   return (
@@ -43,6 +40,7 @@ export default function Navbar(props) {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="nav navbar-nav ml-auto">
             {props.currentUser ? (
+              <>
               <li className="nav-item active">
                 <Link
                   className="nav-link"
@@ -54,6 +52,10 @@ export default function Navbar(props) {
                   Logout
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/create-course">Create the Course</Link>
+              </li>
+              </>
             ) : (
               <li className="nav-item active">
                 <Link className="nav-link" to="/login">
@@ -61,11 +63,20 @@ export default function Navbar(props) {
                 </Link>
               </li>
             )}
-            <li className="nav-item">
-              <Link className="nav-link" to="./register">
-                Become a tutor
-              </Link>
-            </li>
+            {props.currentUser ? (
+              <li className="nav-item">
+                <Link className="nav-link" to="./register">
+                  Profile
+                </Link>
+              </li>
+            ) : (
+              <li className="nav-item">
+                <Link className="nav-link" to="./register">
+                  Become a tutor
+                </Link>
+              </li>
+            )}
+
             <li className="nav-item">
               <a className="nav-link" href="#">
                 Contact

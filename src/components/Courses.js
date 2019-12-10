@@ -1,8 +1,8 @@
 import React from "react";
-
+import {Link} from 'react-router-dom'
 export default function Courses() {
   return (
-      <div style={{backgroundColor:'#D8D8D8'}}>
+    <div style={{backgroundColor:'#D8D8D8'}}>
     <div className="container">
         <h1 style={{textAlign:'center', paddingTop:'50px', paddingBottom:'50px'}}>Courses</h1>
       <div className="card-deck" style={{paddingBottom:'50px'}}>
@@ -19,9 +19,9 @@ export default function Courses() {
             <li className="list-group-item text-center">Teacher: Nguyễn Vũ</li>
           </ul>
           <div className="card-body">
-            <a href="#" className="btn btn-primary btn-block">
+          <Link to="/course/guitar" className="btn btn-primary btn-block">
               Learn
-            </a>
+          </Link>
           </div>
         </div>
         <div className="card">
@@ -37,9 +37,9 @@ export default function Courses() {
             <li className="list-group-item text-center">Teacher: Nguyễn Vũ</li>
           </ul>
           <div className="card-body">
-            <a href="#" className="btn btn-primary btn-block">
+            <Link to="/course/piano" className="btn btn-primary btn-block">
               Learn
-            </a>
+            </Link>
           </div>
         </div>
         <div className="card">
@@ -55,9 +55,9 @@ export default function Courses() {
             <li className="list-group-item text-center">Teacher: Nguyễn Vũ</li>
           </ul>
           <div className="card-body">
-            <a href="#" className="btn btn-primary btn-block">
+          <Link to="/course/violin" className="btn btn-primary btn-block">
               Learn
-            </a>
+          </Link>
           </div>
         </div>
       </div>

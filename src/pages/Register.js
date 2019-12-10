@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import Navbar from "../components/Navbar";
 import { Form, Button, Col, InputGroup } from "react-bootstrap";
 import {useHistory} from 'react-router-dom'
 
 
 
-export default function Register() {
+export default function Register(props) {
   const [input, setInput] = useState({});
   const [validated, setValidated] = useState(false);
   const [state, setState] = useState('')
+
+  const history = useHistory()
+
 
   const handelOnChange = e => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -21,7 +23,8 @@ export default function Register() {
     }
     event.preventDefault();
     setValidated(true);
-    postUser()
+    if(form.checkValidity === true) postUser()
+
   };
   const postUser = async() => {
     const resp = await fetch("https://127.0.0.1:5000/register",{
@@ -37,15 +40,15 @@ export default function Register() {
       if (data.success){
         props.setCurrentUser(data.user)
         localStorage.setItem('token', data.token)
-        history.push("/")
+        history.pushState('/')
       }else {
-        alert(data.message)
+        setState(data.state)
       }
     } else {
       alert('fail to fetch')
     }
   }
-
+  if (props.currentUser) history.push('/')
   return (
     <div>
       <p style={{color :'red'}}>{state}</p>
