@@ -21,10 +21,11 @@ export default function Register(props) {
       event.preventDefault();
       event.stopPropagation();
     }
-    event.preventDefault();
-    setValidated(true);
-    if(form.checkValidity === true) postUser()
-
+    else{
+      event.preventDefault();
+      setValidated(true);
+      postUser()
+    }
   };
   const postUser = async() => {
     const resp = await fetch("https://127.0.0.1:5000/register",{

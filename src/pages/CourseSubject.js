@@ -47,7 +47,7 @@ export default function CourseSubject(props) {
         <Card.Body>
           <Card.Title>{course.name}</Card.Title>
           <Card.Text>{course.desc}</Card.Text>
-          <Button variant="primary">Watch recourse</Button>
+          <Link to={`/recouse/${course.id}`}>Watch ReCourse</Link>
             { currentUser ? 
                 (currentUser.id === course.teacher_id ?
                     <>
