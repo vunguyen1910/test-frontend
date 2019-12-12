@@ -34,9 +34,9 @@ export default function EditReCourse(props) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        title: title,
-        url: url,
-        desc: desc
+        "title": title,
+        "url": url,
+        "desc": desc
       })
     });
     if (resp.ok) {

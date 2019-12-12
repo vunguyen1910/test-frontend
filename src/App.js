@@ -66,7 +66,7 @@ function App() {
         <Route path="/course/:id/edit" render = {()=><EditCourse currentUser={currentUser} course={course}/>}/>
         <Route path="/course/:subject" render = {() => <CourseSubject currentUser={currentUser} setCourse={setCourse}/>} />
         <Route path="/recourse/:id/edit" render = {()=> <EditReCourse recourse = {recourse}/>} />
-        <Route exact path="/video/:id" render={()=><VideoLearning recourse = {recourse}/>}/>
+        <Route exact path="/video/:id" render={()=><VideoLearning recourse = {recourse} currentUser = {currentUser}/>}/>
         <Route path="/recouse/:id" render = {()=> <LearningCourse currentUser={currentUser} setrecourse={setrecourse}/>} />
         <Route path="/" render={() => <HomePage />}/>
       </Switch>

@@ -39,6 +39,30 @@ export default function LearningCourse(props) {
     } else alert("cant fetch");
   };
 
+  const recourseRender = reCourse.map((recourse) => {
+    return (
+      <Card className="mt-2">
+        <Card.Body>
+          <Card.Title>{recourse.title}</Card.Title>
+          <Card.Text>{recourse.desc}</Card.Text>
+          <Link to={`/video/${recourse.id}`}>View</Link>
+          {props.currentUser ? (
+            props.currentUser.id === recourse.teacher_id ? (
+              <>
+                <Button onClick={()=>{deleterReCourse(recourse.id)}}>Delete</Button>
+                <Link className="btn btn-primary" to={`/recourse/${recourse.id}/edit`}>Edit</Link>
+              </>
+            ) : (
+              ""
+            )
+          ) : (
+            ""
+          )}
+        </Card.Body>
+      </Card>
+    );
+  });
+
   const createReCourse = async() =>{
       const resp = await fetch(`https://127.0.0.1:5000/recourse/create`,{
             method : 'POST',
@@ -72,29 +96,7 @@ export default function LearningCourse(props) {
         setState(data.message)
     }
   };
-  const recourseRender = reCourse.map(recourse => {
-    return (
-      <Card className="mt-2">
-        <Card.Body>
-          <Card.Title>{recourse.title}</Card.Title>
-          <Card.Text>{recourse.desc}</Card.Text>
-          <Link to={`/video/${recourse.id}`}>View</Link>
-          {props.currentUser ? (
-            props.currentUser.id === recourse.teacher_id ? (
-              <>
-                <Button onClick={()=>{deleterReCourse(recourse.id)}}>Delete</Button>
-                <Link className="btn btn-primary">Edit</Link>
-              </>
-            ) : (
-              ""
-            )
-          ) : (
-            ""
-          )}
-        </Card.Body>
-      </Card>
-    );
-  });
+
   return (
     <div className="container">
       {props.currentUser.teacher_id === reCourse.teacher_id ? (
