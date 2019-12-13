@@ -12,7 +12,7 @@ export default function Login(props) {
   };
 
   const login = async () => {
-    const resp = await fetch("https://127.0.0.1:5000/login", {
+    const resp = await fetch(`${process.env.REACT_APP_URL_DATABASE}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -73,7 +73,7 @@ export default function Login(props) {
           <Button variant="primary" type="submit">
             Submit
           </Button>
-          <a href="https://127.0.0.1:5000/loginfacebook/facebook"  rel="noopener noreferrer">Login to facebook</a>
+          <a href={`${process.env.REACT_APP_URL_DATABASE}/loginfacebook/facebook`}  rel="noopener noreferrer">Login to facebook</a>
           <div><Link to="/forgot-password" rel="noopener noreferrer" >Forgot password</Link></div>
         </Form>
       </div>

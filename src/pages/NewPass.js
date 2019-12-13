@@ -21,7 +21,7 @@ export default function Forgot() {
 
   const getNewPass = async() => {
     if(input){
-        const resp = await fetch("https://127.0.0.1:5000/new-password", {
+        const resp = await fetch(`${process.env.REACT_APP_URL_DATABASE}/new-password`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

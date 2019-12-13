@@ -27,7 +27,7 @@ export default function EditReCourse(props) {
   };
 
   const editrecourse = async () => {
-    const resp = await fetch(`https://127.0.0.1:5000/recourse/${id}/edit`, {
+    const resp = await fetch(`${process.env.REACT_APP_URL_DATABASE}/recourse/${id}/edit`, {
       method: "PUT",
       headers: {
         Authorization: localStorage.getItem("token"),

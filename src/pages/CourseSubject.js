@@ -7,7 +7,7 @@ export default function CourseSubject(props) {
   const [state, setState] = useState('');
   const currentUser = props.currentUser
   const getSourceSubject = async () => {
-    const resp = await fetch(`https://127.0.0.1:5000/course/${subject}`, {
+    const resp = await fetch(`${process.env.REACT_APP_URL_DATABASE}/course/${subject}`, {
       headers: {
         "Content-Type": "application/json"
       }
@@ -24,7 +24,7 @@ export default function CourseSubject(props) {
 
 
   const deleteCourse = async id => {
-    const resp = await fetch(`https://127.0.0.1:5000/course/${id}/delete`,{
+    const resp = await fetch(`${process.env.REACT_APP_URL_DATABASE}/course/${id}/delete`,{
         method: 'DELETE',
         headers:{
             Authorization: `Token ${localStorage.getItem('token')}`,

@@ -26,7 +26,7 @@ export default function LearningCourse(props) {
   };
 
   const getReCourse = async () => {
-    const resp = await fetch(`https://127.0.0.1:5000/recourse/${id}`, {
+    const resp = await fetch(`${process.env.REACT_APP_URL_DATABASE}/recourse/${id}`, {
       headers: {
         "Content-Type": "application/json"
       }
@@ -64,7 +64,7 @@ export default function LearningCourse(props) {
   });
 
   const createReCourse = async() =>{
-      const resp = await fetch(`https://127.0.0.1:5000/recourse/create`,{
+      const resp = await fetch(`${process.env.REACT_APP_URL_DATABASE}/recourse/create`,{
             method : 'POST',
             headers:{
               Authorization: localStorage.getItem('token'),
@@ -85,7 +85,7 @@ export default function LearningCourse(props) {
       }
   }
   const deleterReCourse = async id => {
-    const resp = await fetch(`https://127.0.0.1:5000/recourse/${id}/delete`,{
+    const resp = await fetch(`${process.env.REACT_APP_URL_DATABASE}/recourse/${id}/delete`,{
         method: 'DELETE',
         headers:{
             Authorization: `Token ${localStorage.getItem('token')}`,

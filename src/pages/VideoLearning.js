@@ -63,7 +63,7 @@ export default function VideoLearning(props) {
   //handle recourse
   const getReCourse = async () => {
     const resp = await fetch(
-      `https://127.0.0.1:5000/recourse/singel-recourse/${id}`,
+      `${process.env.REACT_APP_URL_DATABASE}/recourse/singel-recourse/${id}`,
       {
         headers: {
           "Content-Type": "application/json"
@@ -82,7 +82,7 @@ export default function VideoLearning(props) {
   //handle doc
   const getDoc = async () => {
     const resp = await fetch(
-      `https://127.0.0.1:5000/recourse/${id}/render_document`,
+      `${process.env.REACT_APP_URL_DATABASE}/recourse/${id}/render_document`,
       {
         headers: {
           "Content-Type": "application/json"
@@ -144,7 +144,7 @@ export default function VideoLearning(props) {
 
   const upload_document = async () => {
     const resp = await fetch(
-      "https://127.0.0.1:5000/recourse/create-document",
+      `${process.env.REACT_APP_URL_DATABASE}/recourse/create-document`,
       {
         method: "POST",
         headers: {
@@ -169,7 +169,7 @@ export default function VideoLearning(props) {
 
   const delete_doc = async id => {
     const resp = await fetch(
-      `https://127.0.0.1:5000/recourse/${id}/delete-doc`,
+      `${process.env.REACT_APP_URL_DATABASE}/recourse/${id}/delete-doc`,
       {
         method: "DELETE",
         headers: {
@@ -181,7 +181,7 @@ export default function VideoLearning(props) {
   };
 
   const editDoc = async id => {
-    const resp = await fetch(`https://127.0.0.1:5000/recourse/${id}/edit-doc`, {
+    const resp = await fetch(`${process.env.REACT_APP_URL_DATABASE}/recourse/${id}/edit-doc`, {
       method: "PUT",
       headers: {
         Authorization: `Token ${localStorage.getItem("token")}`,

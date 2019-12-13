@@ -36,7 +36,7 @@ function App() {
       ? window.location.search.split("=")[1]
       : null;
       const token = local || accessToken
-    const resp = await fetch("https://127.0.0.1:5000/getuser",{
+    const resp = await fetch(`${process.env.REACT_APP_URL_DATABASE}/getuser`,{
         headers: {
           Authorization: `Token ${token}`
         }
@@ -52,7 +52,7 @@ function App() {
     setLoaded(true)
   }
   if (!loaded) return <h1>loading</h1>
-  console.log(course,'course from app')
+  console.log(process.env.REACT_APP_URL_DATABASE,'course from app')
   return (
     <div className="App">
       <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser} />

@@ -25,7 +25,7 @@ export default function Register(props) {
 
   };
   const postCourse = async() => {
-      const resp = await fetch('https://127.0.0.1:5000/course/create-post',{
+      const resp = await fetch(`${process.env.REACT_APP_URL_DATABASE}/course/create-post`,{
           method : 'POST',
           headers:{
             Authorization: localStorage.getItem('token'),
