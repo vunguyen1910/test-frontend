@@ -51,7 +51,6 @@ function App() {
     }
     setLoaded(true)
   }
-  if (!loaded) return <h1>loading here</h1>
   console.log(process.env.REACT_APP_URL_DATABASE,'course from app')
   return (
     <div className="App">
