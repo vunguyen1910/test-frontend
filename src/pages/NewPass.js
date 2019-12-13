@@ -7,7 +7,7 @@ export default function Forgot() {
       ? window.location.search.split("=")[1]
       : null;
   const [input, setInput] = useState("");
-  const [state, setState] = useState("");
+
     const [token, setToken] = useState(accessToken)
     console.log(token,"aaaaaa")
   const history = useHistory()
