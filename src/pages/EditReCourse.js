@@ -41,7 +41,7 @@ export default function EditReCourse(props) {
     });
     if (resp.ok) {
       const data = await resp.json();
-      if (data.success) setState("You has edit it");
+      if (data.success) {setState("You has edit it")}
       else setState("something went wrong");
     }
   };

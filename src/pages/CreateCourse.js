@@ -43,6 +43,7 @@ export default function Register(props) {
         const data = await resp.json()
         if (data.success){
           setState('You has posted the course')
+          history.goBack()
         }
         else setState('You hasnt posted the course')
       }

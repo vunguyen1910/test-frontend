@@ -41,7 +41,7 @@ export default function Register(props) {
       if (data.success){
         props.setCurrentUser(data.user)
         localStorage.setItem('token', data.token)
-        history.pushState('/')
+        history.pushState('/login')
       }else {
         setState(data.state)
       }

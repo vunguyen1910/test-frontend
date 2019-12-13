@@ -26,6 +26,7 @@ export default function Login(props) {
         props.setCurrentUser(data.user)
         localStorage.setItem('token', data.token)
         history.push('/')
+        console.log(data.user,"user here?")
       }else {
         alert(data.message)
       }

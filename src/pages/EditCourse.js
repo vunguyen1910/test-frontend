@@ -41,7 +41,7 @@ export default function EditCourse(props) {
           })
       })
       if(resp.ok){
-          history.push('/')
+          history.goBack()
           const data = await resp.json()
       }
   };
