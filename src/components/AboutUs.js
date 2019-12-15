@@ -1,41 +1,50 @@
 import React from "react";
 import { Row, Col, Image } from "react-bootstrap";
+
 export default function AboutUs() {
   return (
-    <div className="AboutUs container">
-      <Row className="h-50 w-100">
-        <Col
-          md="6"
-          className="align-items-center justify-content-center text-center"
-          style={{ alignSelf: "center"}}
-        >
-          <Image src={ require('../img/Music-on-brain.jpg') } className="img-fluid"/>
-        </Col>
-        <Col
-          md="6"
-          className="align-items-center justify-content-center"
-          style={{ alignSelf: "center", paddingLeft:"100px" }}
-        >
-          <h2>Now you can learn Music</h2>
-          <p>
-            In these lessons, you'll learn the basics of music making. No prior
-            experience or equipment is required; you'll do everything right here
-            in your browser. To get started, check out the boxes below. Each one
-            contains a small piece of music. Click a box to turn it on or off.
-          </p>
-          <ul style={{listStyleType:"none"}}>
-              <li>
-                  Learning music
-              </li>
-              <li>
-                  Learn fast
-              </li>
-              <li>
-                  Learn easy
-              </li>
-          </ul>
-        </Col>
-      </Row>
-    </div>
+    <Row className="Group_109_Class mt-5">
+      <Col className ="text-right justify-content-center">
+        <img src={require("../img/Music-on-brain.jpg")}/>
+      </Col>
+      <Col style={{padding: "8%"}}>
+        <div class="Group_3_Class">
+          <div class="Science_Class">
+            <span>Science</span>
+          </div>
+          <div data-type="Text" class="Lorem_ipsum_dolor_sit_amet__co_Class">
+            <span>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliqui
+            </span>
+          </div>
+        </div>
+        <div class="Group_4_Class pt-5">
+          <div
+            data-type="Text"
+            data-name="Learn anything"
+            class="Learn_anything_Class"
+          >
+            <span>Learn anything</span>
+          </div>
+          <div
+            data-type="Text"
+            data-name="Talk to our instructors"
+            class="Talk_to_our_instructors_Class pt-2"
+          >
+            <span>Talk to our instructors</span>
+          </div>
+          <div
+            data-type="Text"
+            data-name="Speak with others"
+            class="Speak_with_others_Class pt-2"
+          >
+            <span>Speak with others</span>
+          </div>
+        </div>
+      </Col>
+    </Row>
   );
 }

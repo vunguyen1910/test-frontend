@@ -54,9 +54,8 @@ function App() {
   if (!loaded) return <h1>loading here</h1>
   console.log(process.env.REACT_APP_URL_DATABASE,'course from app')
   return (
-    <div className="App">
-      <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser} />
-
+    <div className="App Desktop_Version">
+      <Navbar/>
       <Switch>
         <Route path="/login" render={()=> <Login setCurrentUser={setCurrentUser} currentUser={currentUser}/>}/>
         <Route path="/register" render={() => <Register setCurrentUser={setCurrentUser} currentUser={currentUser}/>}/>
