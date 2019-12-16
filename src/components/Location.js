@@ -1,21 +1,19 @@
 import React from 'react'
+import {Card} from 'react-bootstrap'
 
 export default function Location() {
     return (
-<div id="Group_113">
+<Card className="bg-dark text-white" id="Group_113">
 		<div id="Location_et">
 			<span>Loacation</span>
 		</div>
 		<div id="Group_97">
-			<div id="Group_ev">
-				<svg class="Rectangle_54">
-					<rect fill="rgba(10,171,154,1)" id="Rectangle_54" rx="0" ry="0" x="0" y="0" width="370" height="370">
-					</rect>
-				</svg>
+			<Card.Img id="Group_ev">
 				<img id="Rectangle_55" src="Rectangle_55.png" srcset="Rectangle_55.png 1x, Rectangle_55@2x.png 2x"/>
-				<div id="Ho_Chi_Minh">
+			</Card.Img>
+				<Card.Title id="Ho_Chi_Minh">
 					<span>Ho Chi Minh</span>
-				</div>
+				</Card.Title>
 				<div id="Broaden_the_creative___horizon">
 					<span>Broaden the creative <br/><br/>horizons of your kids</span>
 				</div>
@@ -83,7 +81,6 @@ export default function Location() {
 					<span>Providing robust distant <br/><br/>education</span>
 				</div>
 			</div>
-		</div>
-	</div>
+	</Card>
     )
 }

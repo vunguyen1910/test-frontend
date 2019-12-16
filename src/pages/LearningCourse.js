@@ -99,7 +99,7 @@ export default function LearningCourse(props) {
 
   return (
     <div className="container">
-      {props.currentUser.teacher_id === reCourse.teacher_id ? (
+      {(props.currentUser && props.currentUser.teacher_id) === reCourse.teacher_id ? (
         <Form noValidate validated={validated} onSubmit={() => handleSubmit()}>
           <Form.Group as={Col} controlId="validationCustom01">
             <Form.Label>Input your URL Video from Youtube</Form.Label>

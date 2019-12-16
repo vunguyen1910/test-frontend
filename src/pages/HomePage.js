@@ -14,6 +14,7 @@ export default function HomePage(props) {
     <div id="Desktop_Version" className="Desktop_Version_Class">
       <MasterHead/>
       <AboutUs />
+      <Courses />
 
     </div>
   );

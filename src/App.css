@@ -1,3 +1,7 @@
+html{
+	scroll-behavior: smooth;
+}
+
 .mediaViewInfo {
 	--web-view-name: Desktop Version;
 	--web-view-id: Desktop_Version;
@@ -2421,7 +2425,6 @@
 	top: 0px;
 }
 .Path_1_Class {
-	opacity: 0.1;
 	width: 100vw;
 	height: 100vh;
 	left: 0px;
@@ -2445,7 +2448,7 @@
 	font-family: Nunito Sans;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 24px;
+	font-size: 32px;
 	color: rgba(255,255,255,1);
 }
 .Group_92_Class {

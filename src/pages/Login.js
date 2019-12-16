@@ -23,10 +23,10 @@ export default function Login(props) {
       // co 2 truong hop cua resp 1)resp backend tra ve, 2) error, backend ko tra ve, do HTTP tu tra ve
       const data = await resp.json() // data la` cua backend tra ve
       if (data.success){
+        console.log('sksjsj', data.user)
         props.setCurrentUser(data.user)
         localStorage.setItem('token', data.token)
-        history.push('/')
-        console.log(data.user,"user here?")
+        history.goBack()
       }else {
         alert(data.message)
       }
@@ -39,7 +39,7 @@ export default function Login(props) {
     e.preventDefault()
     login()
   }
-  if (props.currentUser) history.push('/')
+  if (props.currentUser) history.goBack()
   return (
     <div>
       <div
@@ -74,8 +74,8 @@ export default function Login(props) {
           <Button variant="primary" type="submit">
             Submit
           </Button>
-          <a href={`${process.env.REACT_APP_URL_DATABASE}/loginfacebook/facebook`}  rel="noopener noreferrer">Login to facebook</a>
-          <div><Link to="/forgot-password" rel="noopener noreferrer" >Forgot password</Link></div>
+          <a href={`${process.env.REACT_APP_URL_DATABASE}/loginfacebook/facebook`} rel="noopener noreferrer" className="btn btn-primary ml-3">Login to facebook</a>
+          <Link to="/forgot-password" rel="noopener noreferrer" className="btn">Forgot password</Link>
         </Form>
       </div>
     </div>

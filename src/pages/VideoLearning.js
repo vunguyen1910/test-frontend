@@ -115,7 +115,7 @@ export default function VideoLearning(props) {
             {doc.title}
           </p>
         </div>
-        {props.currentUser.id == doc.teacher_id ? (
+        {(props.currentUser && props.currentUser.id) == doc.teacher_id ? (
           <>
             <Button
               onClick={() => {

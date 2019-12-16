@@ -4,7 +4,7 @@ import { Row, Col, Image } from "react-bootstrap";
 export default function AboutUs() {
   return (
     <Row className="Group_109_Class mt-5">
-      <Col className ="text-right justify-content-center">
+      <Col className ="text-right justify-content-center pb-5">
         <img src={require("../img/Music-on-brain.jpg")}/>
       </Col>
       <Col style={{padding: "8%"}}>
@@ -27,6 +27,7 @@ export default function AboutUs() {
             data-name="Learn anything"
             class="Learn_anything_Class"
           >
+            <img src={require('../img/icon_1.png')} className="pr-3"/>
             <span>Learn anything</span>
           </div>
           <div
@@ -34,6 +35,7 @@ export default function AboutUs() {
             data-name="Talk to our instructors"
             class="Talk_to_our_instructors_Class pt-2"
           >
+            <img src={require('../img/icon_2.png')} className="pr-3"/>
             <span>Talk to our instructors</span>
           </div>
           <div
@@ -41,6 +43,7 @@ export default function AboutUs() {
             data-name="Speak with others"
             class="Speak_with_others_Class pt-2"
           >
+            <img src={require('../img/icon_3.png')} className="pr-3"/>
             <span>Speak with others</span>
           </div>
         </div>

@@ -20,30 +20,52 @@ export default function NavBar(props) {
     }
   };
   return (
-    <Navbar style={{ backgroundColor: "black" }}>
-      <Navbar.Brand className="Techme_vn_Class mt-5" style={{ color: "white"}}>
-        <span>Techme.vn</span>
-      </Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mt-5" style={{paddingLeft:"70%"}}>
-          <Nav.Link className="Courses_gp_Class" style={{ color: "white" }}>
-            <span>Courses</span>
-          </Nav.Link>
-          <Nav.Link className="Log_In_Class" style={{ color: "white" }}>
-            <span>Log In</span>
-          </Nav.Link>
-          <Nav.Link
-            className="Become_a_tutorr_Class"
-            style={{ color: "white" }}
-          >
-            <span>Become a tutorr</span>
-          </Nav.Link>
-          <Nav.Link className="Contact_gs_Class" style={{ color: "white" }}>
-            <span>Contact</span>
-          </Nav.Link>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+    <div>
+      <Navbar expand="lg" bg="dark">
+        <Link
+          className="Techme_vn_Class ml-5 navbar-brand"
+          style={{ color: "white" }}
+          to="/"
+        >
+          <span>Learning Music</span>
+        </Link>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav style={{ paddingLeft: "70%" }}>
+            <Nav.Link className="Courses_gp_Class" style={{ color: "white" }} href="#course">
+              <span>Courses</span>
+            </Nav.Link>
+            {props.currentUser ? (
+              <>
+                <Nav.Link
+                  className="Log_In_Class nav-link"
+                  style={{ color: "white" }}
+                  onClick={() => logOut()}
+                >
+                  <span>Log out</span>
+                </Nav.Link>
+              </>
+            ) : (
+              <>
+                <Link
+                  className="Log_In_Class nav-link"
+                  style={{ color: "white" }}
+                  to="/login"
+                >
+                  <span>Log In</span>
+                </Link>
+                <Link
+                  className="Become_a_tutorr_Class nav-link"
+                  style={{ color: "white" }}
+                  to="/register"
+                >
+                  <span>Become a tutorr</span>
+                </Link>
+              </>
+            )}
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    </div>
   );
 }
